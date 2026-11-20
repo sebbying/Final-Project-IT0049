@@ -1,0 +1,16 @@
+/.env
+/composer.phar
+/composer-setup.php
+/vendor/
+/dist/
+/.tools/
+/writable/*
+!/writable/.htaccess
+!/writable/index.html
+/public/uploads/
+*.log
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.pyc

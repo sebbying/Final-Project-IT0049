@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+define('SPARKED', true);
+define('FCPATH', __DIR__ . '/public/');
+require __DIR__ . '/app/Config/Paths.php';
+$paths = new Config\Paths();
+require $paths->systemDirectory . '/Boot.php';
+exit(CodeIgniter\Boot::bootSpark($paths));

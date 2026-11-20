@@ -1,0 +1,4 @@
+<div class="table-wrap"><table><thead><tr><th>Sale</th><th>Product</th><th>Customer</th><th>Staff</th><th>Qty</th><th>Total</th><th>Date</th></tr></thead><tbody>
+<?php if (!$sales): ?><tr><td colspan="7" class="empty">No sales recorded yet. Your next sale starts here.</td></tr><?php endif ?>
+<?php foreach ($sales as $sale): ?><tr><td class="muted">#<?= (int) $sale['id'] ?></td><td><strong><?= esc($sale['product_name'] ?? $sale['current_product_name']) ?></strong></td><td><?= esc($sale['customer_name'] ?? $sale['current_customer_name'] ?? 'Walk-in') ?></td><td><?= esc($sale['staff_name'] ?? $sale['current_staff_name']) ?></td><td><?= (int) $sale['quantity'] ?></td><td class="nowrap"><strong><?= money($sale['total_price']) ?></strong></td><td class="nowrap"><?= esc(date('M j, Y', strtotime($sale['created_at']))) ?><small><?= esc(date('g:i A', strtotime($sale['created_at']))) ?></small></td></tr><?php endforeach ?>
+</tbody></table></div>

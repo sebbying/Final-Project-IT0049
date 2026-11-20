@@ -1,0 +1,25 @@
+name: POS checks
+on: [push, pull_request]
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.2', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: intl, mbstring, fileinfo, gd, mysqli, sqlite3
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-dev --prefer-dist --no-interaction
+      - name: PHP syntax
+        run: find app public tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: php tests/domain.php
+      - run: python3 tests/smoke.py
+      - name: Build hosting folder
+        run: php tools/build.php
+      - name: Confirm production environment is separate
+        run: test -f dist/infinityfree/htdocs/.env && grep -q 'CI_ENVIRONMENT = production' dist/infinityfree/htdocs/.env

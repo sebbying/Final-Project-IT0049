@@ -1,0 +1,22 @@
+{
+  "name": "it0049/complete-pos",
+  "description": "IT0049 CodeIgniter 4 point-of-sale system",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "codeigniter4/framework": "4.7.6",
+    "ext-intl": "*",
+    "ext-mbstring": "*",
+    "ext-fileinfo": "*",
+    "ext-gd": "*",
+    "ext-mysqli": "*"
+  },
+  "autoload": {"psr-4": {"App\\": "app/", "Config\\": "app/Config/"}},
+  "scripts": {
+    "post-install-cmd": ["@php tools/prepare.php"],
+    "post-update-cmd": ["@php tools/prepare.php"],
+    "test": ["@php tests/domain.php", "python3 tests/smoke.py"]
+  },
+  "config": {"sort-packages": true, "preferred-install": "dist"}
+}

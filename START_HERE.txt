@@ -1,0 +1,28 @@
+IT0049 CODEIGNITER POS - START HERE
+
+1. Extract pos-codeigniter to C:\xampp\htdocs\pos-codeigniter.
+2. Open PowerShell in that folder.
+3. Run:
+   powershell -ExecutionPolicy Bypass -File .\Setup-Windows.ps1
+4. Start Apache and MySQL in XAMPP. Create ci4_pos in phpMyAdmin.
+5. Open the generated .env. Set your local database password if needed.
+6. Run:
+   & 'C:\xampp\php\php.exe' spark migrate --all
+   & 'C:\xampp\php\php.exe' spark db:seed DemoSeeder
+   & 'C:\xampp\php\php.exe' spark serve --host localhost --port 8080
+7. Open http://localhost:8080/setup. Use POS_SETUP_TOKEN from .env to
+   create your own first account, then sign in.
+8. Read docs/GITHUB.md to upload the raw project files to GitHub.
+9. Run:
+   powershell -ExecutionPolicy Bypass -File .\Build-InfinityFree.ps1
+10. Follow docs/INFINITYFREE.md to edit dist/infinityfree/htdocs/.env,
+    import database/infinityfree.sql into a new hosted database, and
+    FTP the CONTENTS of dist/infinityfree/htdocs to the site's htdocs.
+
+Read README.md for complete setup and validation details.
+
+Framework dependencies are downloaded by Setup-Windows.ps1. They are not
+preinstalled in this ZIP. The hosting builder includes them after setup.
+PHP execution tests could not be run in the generation workspace. Run the
+included checks locally or through the supplied GitHub Actions workflow.
+No GitHub repository or hosted URL is created automatically by these files.

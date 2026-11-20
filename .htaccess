@@ -1,0 +1,9 @@
+Options -Indexes
+RewriteEngine On
+# This project is placed INSIDE htdocs on InfinityFree.
+# Block private paths even when the requested file exists.
+RewriteRule (^|/)\.(?!well-known/) - [F,L]
+RewriteRule ^(app|vendor|system|writable|tools|tests|docs|database|dist)(/|$) - [F,L,NC]
+RewriteRule ^(composer\.(json|lock|phar)|spark|env|LICENSE|README.*|.*\.(sql|ps1|ya?ml|md))$ - [F,L,NC]
+RewriteRule ^public/ - [L]
+RewriteRule ^(.*)$ public/$1 [L]
